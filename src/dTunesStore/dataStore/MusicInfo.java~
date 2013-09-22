@@ -1,0 +1,33 @@
+//---------------------------------------------------------------------
+package dTunesStore.dataStore;
+//---------------------------------------------------------------------
+import dTunesStore.util.Debug;
+import dTunesStore.util.Results;
+//---------------------------------------------------------------------
+/**
+*	This class is used to hold the information for a 
+*	 single song record.
+**/
+//---------------------------------------------------------------------
+public class MusicInfo 
+{
+	//song_name is unique
+	private String song_name;
+
+	//These can all be repeated in other records
+	private String singer_name;
+	private String album_name;
+	private double duration;
+
+	/**
+	*	This method prints out a song record	
+	**/
+	@Override public String toString()
+	{
+		return ("Song name: " + song_name + ", Artist name: " + 
+			singer_name + ", Album name: " + album_name + 
+			", Song Duration: " + 
+			String.format("%3d", duration));
+	}
+} // end class MusicInfo
+//---------------------------------------------------------------------

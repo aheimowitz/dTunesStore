@@ -1,0 +1,27 @@
+//---------------------------------------------------------------------
+/**
+*
+**/
+//---------------------------------------------------------------------
+package dTunesStore.dataStore;
+//---------------------------------------------------------------------
+import dTunesStore.util.Debug;
+import dTunesStore.util.Results;
+//---------------------------------------------------------------------
+public class MusicStore 
+{
+	private String song_name;
+	private String album_name;
+	private String singer_name;
+	private double duration;
+
+	public void displayData()
+	{
+		System.out.println("Song name: ");
+		System.out.println("Artist name: ");
+		System.out.println("Album name: ");
+		System.out.println("Song duration: ");
+	}
+
+} // end class MusicStore
+//---------------------------------------------------------------------
