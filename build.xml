@@ -27,6 +27,7 @@
 
   <target name="dTunesStore" depends="prepare">
     <javac srcdir="${src}"
+	   includeantruntime="false"
            includes="dTunesStore/**"
            excludes="**/package.html"
            destdir="${classes}"
