@@ -9,19 +9,20 @@ public class PopulateWorker implements Runnable
 	private int numThreads;
 	private int currThreads = 0;
 
-	public PopulateWorker(int numThreads) 
+	public PopulateWorker(int numThreads, BufferedReader file)
 	{
 		// This constructor is used to construct the actual 
 		//  thread with the string from the file passed 
 		//  as a command line argument
-		
 		this.numThreads = numThreads;
 		while(!eof){
-			if(curThreads < numThreads){
-				//read next line
-				//create thread
-				//run thread pass line in
-			}
+			if(currThreads < numThreads){
+				String line = file.readLine();
+				Thread pop = new Thread(new PopulateWorker(line));
+                pop.start();
+			}else{
+                pop.join();
+            }
 		}	
 	}
 
