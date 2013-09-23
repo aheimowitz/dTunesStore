@@ -3,37 +3,46 @@ package dTunesStore.dataStore;
 //---------------------------------------------------------------------
 import dTunesStore.util.Debug;
 import dTunesStore.util.Results;
+import java.util.BufferedReader;
 //---------------------------------------------------------------------
 public class PopulateWorker implements Runnable 
 {
 	private int numThreads;
 	private int currThreads = 0;
-
-	public PopulateWorker()
-	{
-		// This constructor is used to construct the actual 
-		//  thread with the string from the file passed 
-		//  as a command line argument
-		this.numThreads = numThreads;
+    private String filename;
+    private String curline;
+    
+    public PopulateWorker(int numThread, String name){
+        numThreads = numThread;
+        filename = name;
+        
         boolean eof = false;
-        //BufferedReader file;
+        BufferedReader file = new BufferedReader(new FileReader(filename));
         String line = "";
 		while(!eof){
 			if(currThreads < numThreads){
-				//line = file.readLine();
+				line = file.readLine();
                 if(line != null){
-                    Thread pop = new Thread(new PopulateWorker());
+                    Thread pop = new Thread(new PopulateWorker(line));
+                    currThreads++;
                     pop.start();
                 }else{
                     eof = true;
                 }
 			}
-		}	
+		}
+        file.close();
+    }
+
+	public PopulateWorker(String line)
+	{
+        curline = line;
 	}
     
 	public void run()
 	{
-		// This is used to run the actual thread
+		System.out.println(curline);
+        currThreads--;
 
 	} // end run(...)
 
