@@ -49,11 +49,11 @@
 
 <target name="run" depends="jar">
         <java jar="${BUILD}/jar/dTunesStore.jar"  fork="true">
-	  <arg value="musicFileName"/>
-          <arg value="4"/>
+	  <arg value="dataFile"/>
+          <arg value="1"/>
 	  <arg value="searchFileName"/>
-          <arg value="4"/>
-          <arg value="5"/>
+          <arg value="1"/>
+          <arg value="1"/>
 
 	 </java>
 	
