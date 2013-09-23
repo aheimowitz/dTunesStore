@@ -3,7 +3,9 @@ package dTunesStore.dataStore;
 //---------------------------------------------------------------------
 import dTunesStore.util.Debug;
 import dTunesStore.util.Results;
-import java.util.BufferedReader;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 //---------------------------------------------------------------------
 public class PopulateWorker implements Runnable 
 {
@@ -17,21 +19,27 @@ public class PopulateWorker implements Runnable
         filename = name;
         
         boolean eof = false;
-        BufferedReader file = new BufferedReader(new FileReader(filename));
-        String line = "";
-		while(!eof){
-			if(currThreads < numThreads){
-				line = file.readLine();
-                if(line != null){
-                    Thread pop = new Thread(new PopulateWorker(line));
-                    currThreads++;
-                    pop.start();
-                }else{
-                    eof = true;
+        try{
+            BufferedReader file = new BufferedReader(new FileReader(filename));
+            String line = "";
+            while(!eof){
+                Thread pop = null;
+                if(currThreads < numThreads){
+                    line = file.readLine();
+                    if(line != null){
+                        pop = new Thread(new PopulateWorker(line));
+                        currThreads++;
+                        pop.start();
+                    }else{
+                        eof = true;
+                    }
                 }
-			}
-		}
-        file.close();
+            }
+            file.close();
+
+        }catch(IOException e){
+            System.out.println("file not found");
+        }
     }
 
 	public PopulateWorker(String line)

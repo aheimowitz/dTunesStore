@@ -50,10 +50,10 @@
 <target name="run" depends="jar">
         <java jar="${BUILD}/jar/dTunesStore.jar"  fork="true">
 	  <arg value="dataFile"/>
-          <arg value="1"/>
+          <arg value="2"/>
 	  <arg value="searchFileName"/>
-          <arg value="1"/>
-          <arg value="1"/>
+          <arg value="2"/>
+          <arg value="2"/>
 
 	 </java>
 	
