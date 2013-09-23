@@ -1,21 +1,28 @@
-
-
+//---------------------------------------------------------------------
 package dTunesStore.dataStore;
-
+//---------------------------------------------------------------------
 import dTunesStore.util.Debug;
 import dTunesStore.util.Results;
+//---------------------------------------------------------------------
+public class SearchWorker implements Runnable 
+{
+	private int numThreads;
+	private String filename;
 
+	/**
+	*	This is the constructor for this class
+	**/
+	public SearchWorker(int numThreads, String filename) 
+	{
+		this.numThreads = numThreads;
+		this.filename = filename;
+	}
 
-public class SearchWorker implements Runnable {
+	public void run() 
+	{
+		// PLACEHOLDER
 
-    public SearchWorker() {
-	// PLACEHOLDER
-    }
-
-    public void run() {
-	// PLACEHOLDER
-
-    } // end run(...)
+	} // end run(...)
 
 } // end class SearchWorker
-
+//---------------------------------------------------------------------

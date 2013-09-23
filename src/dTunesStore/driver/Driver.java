@@ -6,6 +6,10 @@ import dTunesStore.util.Results;
 import dTunesStore.dataStore.PopulateWorker;
 import dTunesStore.dataStore.SearchWorker;
 //---------------------------------------------------------------------
+/*import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;*/
+//---------------------------------------------------------------------
 public class Driver 
 {
 	//Variables to store the command line inputs
@@ -16,7 +20,7 @@ public class Driver
 	private static int debug_value;
 
 	/*Command line input format:
-	   (dataStoreFileName NN searchFileName MM DEBUG_VALUE)
+			dataStoreFileName, NN, searchFileName, MM, DEBUG_VALUE
 	*/
 	public static void main(String args[]) 
 	{
@@ -33,18 +37,22 @@ public class Driver
 				System.out.println(args[i]);
 			*/
 
-			//Checks the range on mm
+			//Checks the range on the input parameters
 			if((mm > 0 && mm < 6)&&(nn > 0 && nn < 6)
 				&&(debug_value >= 0 && debug_value < 5))
 			{
 
 				//NEED TO OPEN AND CLOSE THE TEXT FILES IN HERE
-				
-				
-				
-								
+				//BufferedReader songInput = new BufferedReader(new FileReader(dataStoreFileName));				
+				//BufferedReader in = new BufferedReader(new FileReader("foo.in"));
+
+				//Call populate worker to 
+				PopulateWorker n1 = new PopulateWorker(mm,dataStoreFileName);
+							
 				System.out.println("Driver finished" +
 				 " executing!");
+
+				//songInput.close();
 			}			
 			else
 			{
