@@ -37,12 +37,15 @@
            deprecation="off"/>
   </target>
 
+ <target name="jar">
+        <mkdir dir="${BUILD}/jar"/>
+        <jar destfile="${BUILD}/jar/dTunesStore.jar" basedir="${BUILD}/classes">
+            <manifest>
+                <attribute name="Main-Class" value="dTunesStore.driver.Driver"/>
+            </manifest>
+        </jar>
+    </target>
 
-<target name="archive" >
-    <mkdir dir="${BUILD}/dist"/>   
-    <tar destfile="${BUILD}/dist/dTunesStore.tar" basedir="${src}"/>
-    <gzip src="${BUILD}/dist/dTunesStore.tar" destfile="${BUILD}/dist/dTunesStore.tar.gz"/>
-</target>
 
 <target name="run" depends="jar">
         <java jar="${BUILD}/jar/dTunesStore.jar"  fork="true">
@@ -55,6 +58,15 @@
 	 </java>
 	
     </target>
+
+
+<target name="archive" >
+    <mkdir dir="${BUILD}/dist"/>   
+    <tar destfile="${BUILD}/dist/dTunesStore.tar" basedir="${src}"/>
+    <gzip src="${BUILD}/dist/dTunesStore.tar" destfile="${BUILD}/dist/dTunesStore.tar.gz"/>
+   
+ 
+</target>
 
 
 </project>
