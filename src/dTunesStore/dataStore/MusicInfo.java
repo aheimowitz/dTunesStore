@@ -17,6 +17,18 @@ public class MusicInfo
 	private double duration;
 
 	/**
+	*	This is the basic constructor for this class
+	**/
+	public MusicInfo(String song_name, String artist_name, 
+		String album_name, double duration)
+	{
+		this.song_name = song_name;
+		this.artist_name = artist_name;
+		this.album_name = album_name;
+		this.duration = duration;
+	}
+
+	/**
 	*	This method prints out a song record	
 	**/
 	@Override public String toString()

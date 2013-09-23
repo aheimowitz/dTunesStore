@@ -1,26 +1,47 @@
 //---------------------------------------------------------------------
-/**
-*
-**/
-//---------------------------------------------------------------------
 package dTunesStore.dataStore;
 //---------------------------------------------------------------------
 import dTunesStore.util.Debug;
 import dTunesStore.util.Results;
 //---------------------------------------------------------------------
+//Imported this class to make use of vectors for the songs list
+import java.util.Vector;
+//---------------------------------------------------------------------
 public class MusicStore 
 {
-	private String song_name;
-	private String album_name;
-	private String singer_name;
-	private double duration;
+	//This vector is used to store all of the song information
+	private Vector songs;
 
+	/**
+	*	The empty constructor
+	**/	
+	public MusicStore()
+	{
+
+		songs = new Vector();
+	}
+
+	//FIXME: Unsure if this method is needed
+	public void loadStore()
+	{
+
+	}
+
+	/*
+	*	This method is used to display all of the song entries 
+	*	 that are in the library.
+	**/
 	public void displayData()
 	{
-		System.out.println("Song name: ");
-		System.out.println("Artist name: ");
-		System.out.println("Album name: ");
-		System.out.println("Song duration: ");
+		//Print all data to stdout
+		for(int i = 0; i < songs.capacity(); i++)	
+		{
+			/*for(int j = 0; j < (songs.elementAt(i)).capacity();
+				j++)
+			{
+				System.out.println(((songs.elementAt(i)).elementAt(j)).toString());
+			}*/
+		}
 	}
 
 } // end class MusicStore
