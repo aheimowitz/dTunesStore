@@ -6,7 +6,7 @@ import dTunesStore.util.Results;
 //---------------------------------------------------------------------
 /**
 *	This class is used to hold the information for a 
-*	 single song record.
+*	 single song.
 **/
 //---------------------------------------------------------------------
 public class MusicInfo 
@@ -29,7 +29,7 @@ public class MusicInfo
 	}
 
 	/**
-	*	This method prints out a song record	
+	*	This method prints out a song's details	
 	**/
 	@Override public String toString()
 	{
@@ -38,39 +38,66 @@ public class MusicInfo
 			", Song Duration: " + 
 			String.format("%3d", duration));
 	}
-
-	public String getName()
+	
+	/**
+	*	This method returns the song name
+	**/
+	public String getSongName()
 	{
 		return song_name;
 	}
 
+	/**
+	*	This method returns the artist's name
+	**/
 	public String getArtist()
 	{
 		return artist_name;
 	}
+
+	/**
+	*	This method returns the album's name	
+	**/
 	public String getAlbum()
 	{
 		return album_name;
 	}
 
+	/**
+	*	This method returns the song's duration
+	**/
 	public Double getDuration()
 	{
 		return duration;
 	}
 
-	public void setName(String name)
+	/**
+	*	This method sets the song's name 
+	**/
+	public void setSongName(String name)
 	{
 		song_name = name;
 	}
-	public void setArtist(String artist)
+
+	/**
+	*	This method sets the artist's name
+	**/
+	public void setArtistName(String artist)
 	{
 		artist_name = artist;
 	}
-	public void setAlbum(String album)
+	
+	/**
+	*	This method sets the album's name
+	**/
+	public void setAlbumName(String album)
 	{
 		album_name = album;
 	}
 
+	/**
+	*	This method sets the song's duration
+	**/
 	public void setDuration(Double dur)
 	{
 		duration = dur;

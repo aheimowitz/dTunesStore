@@ -16,6 +16,8 @@ public class SearchWorker implements Runnable
 	{
 		this.numThreads = numThreads;
 		this.filename = filename;
+
+		
 	}
 
 	public void run() 
