@@ -11,8 +11,9 @@ public class PopulateWorker implements Runnable
 {
 	private static int numThreads;
 	private static int currThreads = 0;
+    private static BufferedReader file;
 	private String filename;
-	private String curline;
+    private static boolean eof = false;
 
 	/**
 	*	This is the initial constructor that is called from the driver
@@ -22,23 +23,22 @@ public class PopulateWorker implements Runnable
 		numThreads = numThread;
 		filename = name;
 		
-		boolean eof = false;
 		try
 		{
-			BufferedReader file = new BufferedReader(new FileReader(filename));
+			file = new BufferedReader(new FileReader(filename));
 			String line = "";
 			while(!eof)
 			{
 				Thread pop = null;
 				if(currThreads < numThreads)
 				{
-					line = file.readLine();
+					//line = file.readLine();
 					
 					//Checks to ensure that the newline from the file is not empty		
 					if(line != null)
 					{
 						//Creates a new thread with the next line from the file
-						pop = new Thread(new PopulateWorker(line));
+						pop = new Thread(new PopulateWorker());
 						currThreads++;
 						//Starts a new thread
 						pop.start();
@@ -60,9 +60,9 @@ public class PopulateWorker implements Runnable
 	*	This is the constructor that is called for each of the threads
 	*	 from the constructor above
 	**/
-	private PopulateWorker(String line)
+	private PopulateWorker()
 	{
-	        curline = line;
+        
 	}
     
 	/**
@@ -71,16 +71,22 @@ public class PopulateWorker implements Runnable
 	public void run()
 	{
 		//System.out.println(counter);
-		System.out.println(curline);
-	
-		String[] parse = curline.split(" ");
-
-		MusicInfo m1 = new MusicInfo(parse[0], parse[1], parse[2], Double.parseDouble(parse[3]));
+        try{
+            String curline = file.readLine();
+            System.out.println(curline);
+            if(curline == null){
+                eof = true;
+            }else{
+                String[] parse = curline.split(" ");
+                MusicInfo m1 = new MusicInfo(parse[0], parse[1], parse[2], Double.parseDouble(parse[3]));
+            }
+            currThreads--;
+        }catch (IOException e){
+            System.out.println("Error");
+        }
 
 		//2) Check where to place the song in musicStore structure
 		//3) Place in the musicStore structure
-
-       		currThreads--;
 
 	} // end run(...)
 
