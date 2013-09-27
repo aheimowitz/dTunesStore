@@ -4,42 +4,39 @@ package dTunesStore.dataStore;
 import dTunesStore.util.Debug;
 import dTunesStore.util.Results;
 //---------------------------------------------------------------------
-//Imported this class to make use of vectors for the songs list
-import java.util.Vector;
+import java.util.Hashtable;
+import java.util.Enumeration;
 //---------------------------------------------------------------------
 public class MusicStore 
 {
-	//This vector is used to store all of the song information
-	private Vector songs;
 	private int length = 0;
+	Hashtable <String, MusicInfo> songList;
 
 	/**
 	*	The empty class constructor
 	**/	
 	public MusicStore()
 	{
-		//Initializes the vector
-		songs = new Vector();
+		songList = new Hashtable<String, MusicInfo>(); 
 	}
 
 	/**
 	*	This method adds a MusicInfo record to the 
-	*	 vector of songs
+	*	 list of songs
 	**/
-	public void addSong(MusicInfo newSong, int index)
+	public void addSong(MusicInfo newSong)
 	{
-		
+		songList.put(newSong.getSongName(), newSong);	
+		songList.put(newSong.getArtist(), newSong);	
+		songList.put(newSong.getAlbum(), newSong);	
 	}
 
 	/**
-	*	This method is the "getter" method for this class
-	*	 it is used to get a vector of MusicInfo 
-	*	 objects at the specified index from the vector
+	*	This method gets a song from the keyword given	
 	**/
-	public Vector getSong(int index)
+	public MusicInfo getSong(String searchString)
 	{
-		/*songs.elementAt(index);*/
-		return songs;
+		return songList.get(searchString);
 		
 	}
 
@@ -49,15 +46,17 @@ public class MusicStore
 	**/
 	public void displayData()
 	{
-		//Print all data to stdout
-	/*	for(int i = 0; i < songs.capacity(); i++)	
-		{
-			//for(int j = 0; j < (songs.elementAt(i)).Capacity(); j++)
-			{
-				//System.out.println(((songs.elementAt(i)).elementAt(j)).toString());
-			}*/
-	}
+		//FIXME: Does not remove duplicates
 	
+		//Makes an enum based on all the keys in the songList
+		Enumeration keys = songList.keys();
+
+		//Iterates through the keys and prints all entries out
+		while(keys.hasMoreElements())
+		{
+			System.out.println(songList.get(keys.nextElement()));
+		}
+	}
 
 } // end class MusicStore
 //---------------------------------------------------------------------

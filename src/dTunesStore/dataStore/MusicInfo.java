@@ -36,7 +36,7 @@ public class MusicInfo
 		return ("Song name: " + song_name + ", Artist name: " + 
 			artist_name + ", Album name: " + album_name + 
 			", Song Duration: " + 
-			String.format("%3d", duration));
+			String.format("%.2f", duration));
 	}
 	
 	/**

@@ -34,7 +34,7 @@ public class Driver
 			if((mm > 0 && mm < 6)&&(nn > 0 && nn < 6)
 				&&(debug_value >= 0 && debug_value < 5))
 			{
-				PopulateWorker p1 = new PopulateWorker(mm,dataStoreFileName);
+				//PopulateWorker p1 = new PopulateWorker(mm,dataStoreFileName);
 				SearchWorker w1 = new SearchWorker(nn, searchFileName); 				
 			
 				System.out.println("Driver finished" +
