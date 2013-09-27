@@ -29,9 +29,10 @@ public class PopulateWorker implements Runnable
 		{
 			file = new BufferedReader(new FileReader(filename));
 			String line = "";
-            Thread pop = null;
+            
 			while(!eof)
 			{
+                Thread pop = null;
 				if(currThreads < numThreads)
 				{
 					//line = file.readLine();
