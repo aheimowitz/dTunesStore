@@ -14,12 +14,14 @@ public class PopulateWorker implements Runnable
     private static BufferedReader file;
 	private String filename;
     private static boolean eof = false;
+    private static MusicStore musicStore;
 
 	/**
 	*	This is the initial constructor that is called from the driver
 	**/
-	public PopulateWorker(int numThread, String name)
+	public PopulateWorker(int numThread, String name, MusicStore store)
 	{
+        musicStore = store;
 		numThreads = numThread;
 		filename = name;
 		
@@ -73,12 +75,13 @@ public class PopulateWorker implements Runnable
 		//System.out.println(counter);
         try{
             String curline = file.readLine();
-            System.out.println(curline);
+            //System.out.println(curline);
             if(curline == null){
                 eof = true;
             }else{
                 String[] parse = curline.split(" ");
                 MusicInfo m1 = new MusicInfo(parse[0], parse[1], parse[2], Double.parseDouble(parse[3]));
+                musicStore.addSong(m1);
             }
             currThreads--;
         }catch (IOException e){

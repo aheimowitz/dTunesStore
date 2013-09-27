@@ -5,6 +5,7 @@ import dTunesStore.util.Debug;
 import dTunesStore.util.Results;
 import dTunesStore.dataStore.PopulateWorker;
 import dTunesStore.dataStore.SearchWorker;
+import dTunesStore.dataStore.MusicStore;
 //---------------------------------------------------------------------
 public class Driver 
 {
@@ -34,8 +35,10 @@ public class Driver
 			if((mm > 0 && mm < 6)&&(nn > 0 && nn < 6)
 				&&(debug_value >= 0 && debug_value < 5))
 			{
-				PopulateWorker p1 = new PopulateWorker(mm,dataStoreFileName);
-				SearchWorker w1 = new SearchWorker(nn, searchFileName); 				
+                MusicStore store = new MusicStore();
+				PopulateWorker p1 = new PopulateWorker(mm,dataStoreFileName,store);
+				SearchWorker w1 = new SearchWorker(nn, searchFileName);
+				store.displayData();
 			
 				System.out.println("Driver finished" +
 				 " executing!");
