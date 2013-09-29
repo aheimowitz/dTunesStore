@@ -15,7 +15,7 @@ public class PopulateWorker implements Runnable
 	private String filename;
 	private static boolean eof;
 	private static MusicStore musicStore;
-    public static int debug_value;
+    private static int debug_value;
 //---------------------------------------------------------------------
 	/**
 	*	This is the default empty constructor that is used
@@ -30,6 +30,7 @@ public class PopulateWorker implements Runnable
 //---------------------------------------------------------------------
 	/**
 	*	This is the initial constructor that is called from the driver
+        @param numThreads, filename, store
 	**/
 	public PopulateWorker(int numThread, String filename, MusicStore store)
 	{

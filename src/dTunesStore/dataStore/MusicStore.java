@@ -23,6 +23,7 @@ public class MusicStore
 	/**
 	*	This method adds a MusicInfo record to the 
 	*	 list of songs
+        @param newsong
 	**/
 	public void addSong(MusicInfo newSong)
 	{
@@ -33,6 +34,8 @@ public class MusicStore
 
 	/**
 	*	This method gets a song from the keyword given	
+        @param searchString
+        @return the item from the hashtable
 	**/
 	public MusicInfo getSong(String searchString)
 	{

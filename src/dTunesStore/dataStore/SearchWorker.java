@@ -26,6 +26,7 @@ public class SearchWorker implements Runnable
 
 	/**
 	*	This is the constructor for this class
+        @param numThreads, filename, store
 	**/
 	public SearchWorker(int numThreads, String filename, MusicStore store) 
 	{
@@ -73,6 +74,9 @@ public class SearchWorker implements Runnable
 
 
 //---------------------------------------------------------------------
+    /**
+     This is the function that runs everytime a thread is created
+    **/
 	public void run()
 	{
 		try

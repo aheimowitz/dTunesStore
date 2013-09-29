@@ -19,6 +19,7 @@ public class Results
 	/**
 	*	This method adds a MusicInfo record to the 
 	*	 list of songs that match search terms
+        @param newsong
 	**/
 	public void addSongFound(MusicInfo newSong)
 	{

@@ -9,6 +9,7 @@ public class Debug
 
 	/**
 	*	This method sets the debug value
+        @param value
 	**/
 	public void setValue(int value)
 	{
@@ -17,6 +18,7 @@ public class Debug
 
 	/**
 	*	This method returns the debug value
+        @return debug_value
 	**/
 	public int getValue()
 	{

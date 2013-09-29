@@ -19,6 +19,10 @@ public class Driver
 	/*Expected command line input format:
 			dataStoreFileName, NN, searchFileName, MM, DEBUG_VALUE
 	*/
+    /**
+     Main driver class takes in arguments, spawns populate worker and searchworker
+     @param args [dataStoreFileName, numThreads for popWorker, searchFileName, numThreads for searchWorker, debug_value]
+    **/
 	public static void main(String args[]) 
 	{
 		if(args.length == 5)
@@ -30,12 +34,15 @@ public class Driver
 			searchFileName = args[2];
 			mm = Integer.parseInt(args[3]);
 			debug_value = Integer.parseInt(args[4]);
+            
+            Debug debugger = new Debug();
+            debugger.setValue(debug_value);
 
 			//Checks the range on the input parameters
 			if((mm > 0 && mm < 6)&&(nn > 0 && nn < 6)
 				&&(debug_value >= 0 && debug_value < 5))
 			{
-                		MusicStore store = new MusicStore();
+                MusicStore store = new MusicStore();
 				PopulateWorker p1 = new PopulateWorker(nn,dataStoreFileName,store);
 				SearchWorker w1 = new SearchWorker(mm, searchFileName, store);
 
