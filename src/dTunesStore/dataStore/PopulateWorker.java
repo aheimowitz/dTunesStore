@@ -57,7 +57,7 @@ public class PopulateWorker implements Runnable
 				}
 			}
 
-			//FIXME: Need a join here!
+			while(currThreads != 0);
 			if(currThreads == 0)
 			{
 				file.close();
@@ -78,8 +78,7 @@ public class PopulateWorker implements Runnable
 	{
 		try
 		{
-			String curline = file.readLine();
-
+            String curline = file.readLine();
 			if(curline != null)
 			{
 				//FIXME: Need to not add repeats to the music store!
@@ -88,12 +87,12 @@ public class PopulateWorker implements Runnable
 					Double.parseDouble(parse[3]));
 
 				musicStore.addSong(m1);
-				currThreads--;
 			}
 			else
 			{
 				eof = true;
 			}
+            currThreads--;
 			
 		}
 		catch (IOException e)
