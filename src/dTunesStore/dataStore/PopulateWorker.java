@@ -10,21 +10,31 @@ import java.io.IOException;
 public class PopulateWorker implements Runnable 
 {
 	private static int numThreads;
-	private static int currThreads = 0;
+	private static int currThreads;
 	private static BufferedReader file;
 	private String filename;
 	private static boolean eof;
 	private static MusicStore musicStore;
+//---------------------------------------------------------------------
+	/**
+	*	This is the default empty constructor that is used
+	*	 each time a thread is created
+	**/
+	private PopulateWorker()
+	{
 
+	}
+//---------------------------------------------------------------------
 	/**
 	*	This is the initial constructor that is called from the driver
 	**/
-	public PopulateWorker(int numThread, String name, MusicStore store)
+	public PopulateWorker(int numThread, String filename, MusicStore store)
 	{
 		musicStore = store;
 		numThreads = numThread;
-		filename = name;
+		this.filename = filename;
 		eof = false;
+		currThreads = 0;
 
 		try
 		{
@@ -36,18 +46,22 @@ public class PopulateWorker implements Runnable
 				Thread pop = null;
 				if(currThreads < numThreads)
 				{
-					//Spawns a new thread
-					pop = new Thread(new PopulateWorker());
-				
 					//Adds one to the currently running threads counter
 					currThreads++;
+
+					//Spawns a new thread
+					pop = new Thread(new PopulateWorker());
 
 					//Starts the new thread
 					pop.start();
 				}
 			}
 
-			file.close();
+			//FIXME: Need a join here!
+			if(currThreads == 0)
+			{
+				file.close();
+			}
 
 		}
 		catch(IOException e)
@@ -56,16 +70,7 @@ public class PopulateWorker implements Runnable
 			System.exit(1);
 		}
 	}
-
-	/**
-	*	This is the constructor that is called for each of the threads
-	*	 from the constructor above
-	**/
-	private PopulateWorker()
-	{
-
-	}
-
+//---------------------------------------------------------------------
 	/**
 	*	This method is the code that each of the threads executes
 	**/
@@ -74,25 +79,30 @@ public class PopulateWorker implements Runnable
 		try
 		{
 			String curline = file.readLine();
-			if(curline == null)
+
+			if(curline != null)
 			{
-				eof = true;
+				//FIXME: Need to not add repeats to the music store!
+				String[] parse = curline.split(" ");
+				MusicInfo m1 = new MusicInfo(parse[0], parse[1], parse[2],
+					Double.parseDouble(parse[3]));
+
+				musicStore.addSong(m1);
+				currThreads--;
 			}
 			else
 			{
-				String[] parse = curline.split(" ");
-				MusicInfo m1 = new MusicInfo(parse[0], parse[1], parse[2], 
-				Double.parseDouble(parse[3]));
-				musicStore.addSong(m1);
+				eof = true;
 			}
-			currThreads--;
+			
 		}
 		catch (IOException e)
 		{
-			System.out.println("Error");
+			System.out.println("ERROR: Unable to read from file!");
+			System.exit(2);
 		}
 
 	} // end run(...)
-
+//---------------------------------------------------------------------
 } // end class PopulateWorker
 //---------------------------------------------------------------------
