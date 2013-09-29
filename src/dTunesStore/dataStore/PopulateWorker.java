@@ -72,7 +72,7 @@ public class PopulateWorker implements Runnable
 	}
 //---------------------------------------------------------------------
 	/**
-	*	This method is the code that each of the threads executes
+	*	This method is the code that each of the threads executes.
 	**/
 	public void run()
 	{
