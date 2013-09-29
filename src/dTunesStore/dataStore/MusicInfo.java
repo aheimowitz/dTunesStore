@@ -15,6 +15,7 @@ public class MusicInfo
 	private String artist_name;
 	private String album_name;
 	private double duration;
+    private static int debug_value;
 
 	/**
 	*	This is the basic constructor for this class
@@ -23,6 +24,11 @@ public class MusicInfo
 	public MusicInfo(String song_name, String artist_name, 
 		String album_name, double duration)
 	{
+        Debug debugger = new Debug();
+        debug_value = debugger.getValue();
+        if(debug_value == 4){
+            System.out.println("Constructor Called");
+        }
 		this.song_name = song_name;
 		this.artist_name = artist_name;
 		this.album_name = album_name;

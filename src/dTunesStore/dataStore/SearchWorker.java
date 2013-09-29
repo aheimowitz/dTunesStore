@@ -67,8 +67,6 @@ public class SearchWorker implements Runnable
 				}
 			}
 
-			/*while(currThreads != 0);
-			file.close();*/
 		}
 		catch(IOException e)
 		{

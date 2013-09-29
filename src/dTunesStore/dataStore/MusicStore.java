@@ -11,13 +11,19 @@ import java.util.Enumeration;
 public class MusicStore 
 {
 	Hashtable <String, MusicInfo> songList;
+    private static int debug_value;
 
 	/**
 	*	The empty class constructor
 	**/	
 	public MusicStore()
 	{
-		songList = new Hashtable<String, MusicInfo>(); 
+		songList = new Hashtable<String, MusicInfo>();
+        Debug debugger = new Debug();
+        debug_value = debugger.getValue();
+        if(debug_value == 4){
+            System.out.println("Constructor Called");
+        }
 	}
 
 	/**

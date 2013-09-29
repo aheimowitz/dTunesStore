@@ -66,9 +66,6 @@ public class PopulateWorker implements Runnable
 				}
 			}
 
-			/*while(currThreads != 0);
-			file.close();*/
-
 		}
 		catch(IOException e)
 		{
