@@ -23,11 +23,28 @@ public class Results
 	**/
 	public void addSongFound(MusicInfo newSong)
 	{
-		/*if(newSong.getSongName() == i.getSongName() && newSong.getArtist() == i.getArtist() && newSong.getAlbum() == i.getAlbum())
-		songList.put(newSong.getSongName(), newSong);	
-		songList.put(newSong.getArtist(), newSong);	
-		songList.put(newSong.getAlbum(), newSong);	
-		*/
+		boolean exists = false;
+		//System.out.println(newSong.toString());
+		//Makes an enum based on all the keys in the songList
+		Enumeration keys = songList.keys();
+		//Iterates through the keys and prints all entries out
+		while(keys.hasMoreElements() && exists == false)
+		{
+			MusicInfo s1 = songList.get(keys.nextElement());
+			if(newSong.getSongName().equals(s1.getSongName()) && newSong.getArtist().equals(s1.getArtist()) && 	 newSong.getAlbum().equals(s1.getAlbum()))
+			{
+				exists = true;
+			
+			}
+		
+		}
+		if(exists == false)
+		{
+		
+				songList.put(newSong.getSongName(), newSong);	
+				/*songList.put(newSong.getArtist(), newSong);	
+				songList.put(newSong.getAlbum(), newSong);*/
+		}
 	}
 
 	/**

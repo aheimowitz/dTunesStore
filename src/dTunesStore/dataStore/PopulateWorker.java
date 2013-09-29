@@ -66,11 +66,8 @@ public class PopulateWorker implements Runnable
 				}
 			}
 
-			while(currThreads != 0);
-			if(currThreads == 0)
-			{
-				file.close();
-			}
+			/*while(currThreads != 0);
+			file.close();*/
 
 		}
 		catch(IOException e)
@@ -104,7 +101,7 @@ public class PopulateWorker implements Runnable
 			{
 				eof = true;
 			}
-            currThreads--;
+          		currThreads--;
 			
 		}
 		catch (IOException e)

@@ -15,6 +15,7 @@ public class SearchWorker implements Runnable
 	private static int currThreads;
 	private static boolean eof;
 	private static BufferedReader file;
+	private static Results r1;
 
 	/**
 	*	This is the empty constructor used for each of the threads
@@ -28,8 +29,9 @@ public class SearchWorker implements Runnable
 	*	This is the constructor for this class
         @param numThreads, filename, store
 	**/
-	public SearchWorker(int numThreads, String filename, MusicStore store) 
+	public SearchWorker(int numThreads, String filename, MusicStore store, Results result) 
 	{
+		r1 = result;
 		this.numThreads = numThreads;
 		this.filename = filename;
 		this.store = store;
@@ -48,6 +50,7 @@ public class SearchWorker implements Runnable
 				{
 					//Adds one to the currently running threads counter
 					currThreads++;
+					
 
 					//Spawns a new thread
 					pop = new Thread(new SearchWorker());
@@ -57,12 +60,8 @@ public class SearchWorker implements Runnable
 				}
 			}
 
-			//FIXME: Need a join here!
-			if(currThreads == 0)
-			{
-				file.close();
-			}
-
+			/*while(currThreads != 0);
+			file.close();*/
 		}
 		catch(IOException e)
 		{
@@ -79,23 +78,25 @@ public class SearchWorker implements Runnable
     **/
 	public void run()
 	{
+
 		try
 		{
 			String curline = file.readLine();
 
 			if(curline != null)
 			{
-				//FIXME: Check that there is a song actually found.
-				System.out.println(curline + "==" + store.getSong(curline));
-					
-
-				currThreads--;
+				if(store.getSong(curline) != null)
+				{
+					r1.addSongFound(store.getSong(curline));	
+				}
 			}
 			else
 			{
 				eof = true;
 			}
 			
+			currThreads--;			
+
 		}
 		catch (IOException e)
 		{
