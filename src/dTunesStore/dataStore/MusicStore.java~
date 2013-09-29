@@ -46,6 +46,8 @@ public class MusicStore
 	**/
 	public void displayData()
 	{
+		//FIXME: Does not remove duplicates
+	
 		//Makes an enum based on all the keys in the songList
 		Enumeration keys = songList.keys();
 
