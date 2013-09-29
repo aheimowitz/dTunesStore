@@ -81,6 +81,7 @@ public class SearchWorker implements Runnable
 
 			if(curline != null)
 			{
+				//FIXME: Check that there is a song actually found.
 				System.out.println(curline + "==" + store.getSong(curline));
 					
 

@@ -17,6 +17,19 @@ public class Results
 	}
 
 	/**
+	*	This method adds a MusicInfo record to the 
+	*	 list of songs that match search terms
+	**/
+	public void addSongFound(MusicInfo newSong)
+	{
+		/*if(newSong.getSongName() == i.getSongName() && newSong.getArtist() == i.getArtist() && newSong.getAlbum() == i.getAlbum())
+		songList.put(newSong.getSongName(), newSong);	
+		songList.put(newSong.getArtist(), newSong);	
+		songList.put(newSong.getAlbum(), newSong);	
+		*/
+	}
+
+	/**
 	*	This method is used to display all of the song entries 
 	*	 that are in the library.
 	**/
