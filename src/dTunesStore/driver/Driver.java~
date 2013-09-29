@@ -36,8 +36,8 @@ public class Driver
 				&&(debug_value >= 0 && debug_value < 5))
 			{
                 		MusicStore store = new MusicStore();
-				PopulateWorker p1 = new PopulateWorker(mm,dataStoreFileName,store);
-				SearchWorker w1 = new SearchWorker(nn, searchFileName);
+				PopulateWorker p1 = new PopulateWorker(nn,dataStoreFileName,store);
+				SearchWorker w1 = new SearchWorker(mm, searchFileName, store);
 				store.displayData();
 			
 				System.out.println("Driver finished" +

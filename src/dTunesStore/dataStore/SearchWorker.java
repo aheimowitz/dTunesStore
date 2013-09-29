@@ -3,33 +3,100 @@ package dTunesStore.dataStore;
 //---------------------------------------------------------------------
 import dTunesStore.util.Debug;
 import dTunesStore.util.Results;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 //---------------------------------------------------------------------
 public class SearchWorker implements Runnable 
 {
 	private int numThreads;
 	private String filename;
+	private static MusicStore store;
+	private static int currThreads;
+	private static boolean eof;
+	private static BufferedReader file;
+
+	/**
+	*	This is the empty constructor used for each of the threads
+	**/
+	private SearchWorker()
+	{
+		
+	}
 
 	/**
 	*	This is the constructor for this class
 	**/
-	public SearchWorker(int numThreads, String filename) 
+	public SearchWorker(int numThreads, String filename, MusicStore store) 
 	{
 		this.numThreads = numThreads;
 		this.filename = filename;
-		/*
-			FIXME: TEST CODE
-		*/
-		/*MusicInfo m1 = new MusicInfo("a", "b", "c", 1.2);
-		MusicStore ms = new MusicStore();
-		ms.addSong(m1);
-		System.out.println(ms.getSong("c").toString());
-		*/
-		
+		this.store = store;
+		currThreads = 0;
+		eof = false;
+
+		try
+		{
+			file = new BufferedReader(new FileReader(filename));
+			String line = "";
+
+			while(!eof)
+			{
+				Thread pop = null;
+				if(currThreads < numThreads)
+				{
+					//Adds one to the currently running threads counter
+					currThreads++;
+
+					//Spawns a new thread
+					pop = new Thread(new SearchWorker());
+
+					//Starts the new thread
+					pop.start();
+				}
+			}
+
+			//FIXME: Need a join here!
+			if(currThreads == 0)
+			{
+				file.close();
+			}
+
+		}
+		catch(IOException e)
+		{
+			System.out.println("ERROR: file not found!");
+			System.exit(1);
+		}
 	}
 
-	public void run() 
+
+
+//---------------------------------------------------------------------
+	public void run()
 	{
-		// PLACEHOLDER
+		try
+		{
+			String curline = file.readLine();
+
+			if(curline != null)
+			{
+				System.out.println(curline + "==" + store.getSong(curline));
+					
+
+				currThreads--;
+			}
+			else
+			{
+				eof = true;
+			}
+			
+		}
+		catch (IOException e)
+		{
+			System.out.println("ERROR: Unable to read from file!");
+			System.exit(2);
+		}
 
 	} // end run(...)
 

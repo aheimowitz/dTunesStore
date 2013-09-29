@@ -6,6 +6,7 @@ import dTunesStore.util.Results;
 //---------------------------------------------------------------------
 import java.util.Hashtable;
 import java.util.Enumeration;
+import dTunesStore.dataStore.SearchWorker;
 //---------------------------------------------------------------------
 public class MusicStore 
 {
