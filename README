@@ -1,4 +1,70 @@
+-----------------------------------------------------------------------
+CS-442, Design Patterns
+Assignment #1
+Adam Heimowitz, Mike Welte
+-----------------------------------------------------------------------
+ant clean:
+-----------------------------------------------------------------------
+Calls the clean rule in the build.xml file, which removes the build 
+folder and all of its contents.
 
-ant clean
-ant compile
-ant run
+-----------------------------------------------------------------------
+ant compile:
+-----------------------------------------------------------------------
+Calls the compile rule in the build.xml file, which compiles all the 
+source files, creates the build folder and places all of the .class
+in the appropriate subfolders of the build directory
+
+-----------------------------------------------------------------------
+ant run:
+-----------------------------------------------------------------------
+Calls the run rule in the build.xml file, which runs the program and
+passes the command line arguments to the program.
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+MusicStore and Results storage choices:
+-----------------------------------------------------------------------
+We choose to use a hashtable to store all of the songs we get in from
+list, since it is thread safe and though not the best for storage, good
+for access time. Our other choices were vectors, but we decided
+against them since they would take up more space and may have been 
+harder to implement.
+-----------------------------------------------------------------------
+Seperation of Work:
+-----------------------------------------------------------------------
+Adam was responsible for the PopulateWorker and SearchWorker classes,
+as well as implementing the debug and writing the javadocs
+
+Mike was responsible for the MusicInfo, MusicStore and Results classes
+as well as creation of the python populate.py code.
+
+The other coding and debuging was a combined effort.
+-----------------------------------------------------------------------
+How to use populate.py:
+-----------------------------------------------------------------------
+To run, assuming you have python installed on your computer and are using linux, do the following:
+	=================================
+	python populate.py NAME TYPE NUM
+	=================================
+	where
+		-NAME is either data or search
+			data will generate the dataFile
+
+			search will generate searchFile 
+
+		-TYPE is either random or normal
+				
+			random creates random data
+
+			normal creates "normal" data that iterates
+			 from 1 to NUM
+				
+	
+		-NUM is any positive integer 
+			NUM is the number of output lines in the file
+			 you want
+
+	Finally you need to move both searchFile and dataFile to the folder containing build.xml (which should be dTunesStore)
+
+-----------------------------------------------------------------------
