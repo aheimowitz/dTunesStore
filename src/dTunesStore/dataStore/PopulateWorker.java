@@ -15,6 +15,7 @@ public class PopulateWorker implements Runnable
 	private String filename;
 	private static boolean eof;
 	private static MusicStore musicStore;
+    public static int debug_value;
 //---------------------------------------------------------------------
 	/**
 	*	This is the default empty constructor that is used
@@ -22,7 +23,9 @@ public class PopulateWorker implements Runnable
 	**/
 	private PopulateWorker()
 	{
-
+        if(debug_value == 4){
+            System.out.println("Constructor Called");
+        }
 	}
 //---------------------------------------------------------------------
 	/**
@@ -30,6 +33,11 @@ public class PopulateWorker implements Runnable
 	**/
 	public PopulateWorker(int numThread, String filename, MusicStore store)
 	{
+        Debug debugger = new Debug();
+        debug_value = debugger.getValue();
+        if(debug_value == 4){
+            System.out.println("Constructor Called");
+        }
 		musicStore = store;
 		numThreads = numThread;
 		this.filename = filename;
@@ -76,6 +84,9 @@ public class PopulateWorker implements Runnable
 	**/
 	public void run()
 	{
+        if(debug_value == 3){
+            System.out.println("Run Called");
+        }
 		try
 		{
             String curline = file.readLine();

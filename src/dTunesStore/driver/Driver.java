@@ -38,10 +38,6 @@ public class Driver
                 		MusicStore store = new MusicStore();
 				PopulateWorker p1 = new PopulateWorker(nn,dataStoreFileName,store);
 				SearchWorker w1 = new SearchWorker(mm, searchFileName, store);
-				store.displayData();
-			
-				System.out.println("Driver finished" +
-				 " executing!");
 
 			}			
 			else
