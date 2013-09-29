@@ -53,7 +53,7 @@
           <arg value="1"/>
 	  <arg value="searchFile"/>
           <arg value="1"/>
-          <arg value="4"/>
+          <arg value="2"/>
 
 	 </java>
 	

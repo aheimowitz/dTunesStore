@@ -16,13 +16,15 @@ public class SearchWorker implements Runnable
 	private static boolean eof;
 	private static BufferedReader file;
 	private static Results r1;
+	private int debug_value;	
 
 	/**
 	*	This is the empty constructor used for each of the threads
 	**/
 	private SearchWorker()
 	{
-		
+		if(debug_value == 4)
+			System.out.println("Constructor Called");
 	}
 
 	/**
@@ -31,12 +33,17 @@ public class SearchWorker implements Runnable
 	**/
 	public SearchWorker(int numThreads, String filename, MusicStore store, Results result) 
 	{
+		Debug d1 = new Debug();
+		debug_value = d1.getValue();
 		r1 = result;
 		this.numThreads = numThreads;
 		this.filename = filename;
 		this.store = store;
 		currThreads = 0;
 		eof = false;
+
+		if(debug_value == 4)
+			System.out.println("Constructor Called");
 
 		try
 		{
@@ -78,6 +85,10 @@ public class SearchWorker implements Runnable
     **/
 	public void run()
 	{
+		if(debug_value == 3)
+		{
+			System.out.println("Run called");
+		}
 
 		try
 		{

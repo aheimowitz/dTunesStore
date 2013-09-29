@@ -6,14 +6,20 @@ import java.util.Enumeration;
 //---------------------------------------------------------------------
 public class Results 
 {
-	Hashtable <String, MusicInfo> songList;
+	private	Hashtable <String, MusicInfo> songList;
+	Debug d = new Debug();
+	private int debug_val;
 
 	/**
 	*	The empty constructor for this class
 	**/
 	public Results()
 	{
+		debug_val = d.getValue();
 		songList = new Hashtable<String, MusicInfo>();
+
+		if(debug_val == 4)
+			System.out.println("Constructor Called");
 	}
 
 	/**
@@ -40,10 +46,12 @@ public class Results
 		}
 		if(exists == false)
 		{
-		
+				if(d.getValue() == 2)
+				{
+					System.out.println(newSong.toString());
+
+				}
 				songList.put(newSong.getSongName(), newSong);	
-				/*songList.put(newSong.getArtist(), newSong);	
-				songList.put(newSong.getAlbum(), newSong);*/
 		}
 	}
 
